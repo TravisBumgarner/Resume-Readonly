@@ -1,0 +1,166 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* End CSS Reset */
+
+:root {
+    --section-item-padding: 0.3cm;
+    --list-item-padding: 0.15cm;
+    --print-width: 21.5cm;
+    --print-height: 27.9cm;
+}
+
+
+@page {
+    size: A4;
+    margin: 0;
+    width: var(--print-width);
+    height: var(--print-height);
+}
+
+@media screen {
+    #content {
+        overflow: visible;
+        height: auto;
+    }
+
+    #right-column {
+        overflow: visible !important;
+    }
+}
+
+@media print {
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: var(--print-width);
+        height: var(--print-height);
+
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+}
+
+body {
+    width: var(--print-width);
+    height: var(--print-height);
+    margin: 0 auto;
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 0.38cm;
+
+    page-break-after: avoid;
+    page-break-before: avoid;
+    padding: 0.4cm;
+}
+
+h1 {
+    font-size: 1.2cm;
+    font-weight: 300;
+}
+
+h2 {
+    font-size: 0.45cm;
+    padding-bottom: 0.2cm;
+    font-weight: 600;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+
+    &::after {
+        content: attr(href);
+    }
+}
+
+.sub-section {
+    padding-bottom: 0.6cm;
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        padding-bottom: var(--list-item-padding);
+    }
+}
+
+header {
+    padding-bottom: 0.3cm;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    #contact-info {
+        position: relative;
+        top: 0.42cm;
+        display: grid;
+        grid-template-columns: 5.3cm 4cm;
+        gap: 0.05cm 1cm;
+        font-size: 0.3cm;
+
+        strong {
+            width: 45px;
+            display: inline-block;
+        }
+    }
+}
+
+#content {
+    display: flex;
+    flex-direction: row;
+
+    #left-column {
+        padding-right: 1cm;
+    }
+    
+    #right-column {
+        .job-container, .education-container, .side-project-container {
+            padding-bottom: var(--section-item-padding);
+            &:last-child {
+                padding-bottom: 0;
+            }
+
+            .job-header, .education-header, .side-project-header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                .job-title, .education-title, .side-project-title {
+                    font-weight: 500;
+                }
+            }
+
+            .job-body, .side-project-body {
+                padding-top: 0.3cm;
+                ul{
+                    padding-left: 0.6cm;
+                    list-style-type: circle;
+                }
+            }
+        }
+
+        .side-project-container {
+            padding-bottom: var(--list-item-padding);
+
+            .side-project-header {
+                padding-bottom: 0cm;
+            }
+        }
+    }
+    
+}
+
